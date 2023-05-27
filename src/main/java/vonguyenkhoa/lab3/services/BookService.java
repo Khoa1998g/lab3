@@ -20,4 +20,11 @@ public class BookService {
     public void addBook(Book book){
         bookRepository.save(book);
     }
+
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
+    public void saveBook(Book book){
+        bookRepository.save(book);
+    }
 }
