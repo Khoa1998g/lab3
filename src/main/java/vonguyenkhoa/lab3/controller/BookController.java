@@ -63,16 +63,12 @@ public class BookController {
             return "book/edit";
         }
     }
-    @PostMapping("/edit/{id}")
-    public String editBook(@PathVariable("id") long id, Model model) {
-        Book book = bookService.getBookById(id);
-
-        if (book != null) {
-            bookService.saveBook(book);
-            return "redirect:/books";
-        } else {
-            return "redirect:/books";
+    @PostMapping("/edit")
+    public String saveBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "book/edit";
         }
+        bookService.saveBook(book);
+        return "redirect:/books";
     }
-
 }
